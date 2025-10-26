@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Card</title>
+
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #ffbd39, #ff6363);
+        font-family: Poppins, sans-serif;
+    }
+    .card {
+        width: 330px;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        overflow: hidden;
+        transition: 0.3s ease;
+    
+    }
+    .card:hover {
+        transform: translateY(-6px);
+    }
+
+    .card img {
+        width: 100%;
+        height: 340px;
+        object-fit: cover;
+    }
+
+    .info {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .info h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .price {
+        margin: 8px 0;
+        font-size: 22px;
+        font-weight: bold;
+        color: #ff5a4a;
+    }
+
+    .qty-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 12px 0;
+    }
+
+    .qty-box button {
+        width: 35px;
+        height: 35px;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        background: #ff5a4a;
+        color: white;
+        transition: 0.2s;
+    }
+    .qty-box button:hover {
+        background: #e24639;
+    }
+
+    .qty-box span {
+        margin: 0 15px;
+        font-size: 20px;
+    }
+
+    .total {
+        font-size: 18px;
+        margin: 8px 0;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        background: #ff5a4a;
+        border: none;
+        border-radius: 0 0 18px 18px;
+        color: rgb(252, 249, 249);
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .btn:hover {
+        background: #e24639;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="card">
+    <img src="images/painting set.jpg" alt="painting set">
+    <div class="info">
+        <h2>painting set</h2>
+        <div class="price">₹<span id="basePrice">1200</span></div>
+
+        <div class="qty-box">
+            <button id="decrement">−</button>
+            <span id="quantity">1</span>
+            <button id="increment">+</button>
+        </div>
+
+        <div class="total">Total: ₹<span id="totalPrice">1200</span></div>
+
+        <button class="btn">Add to Cart</button>
+    </div>
+</div>
+
+<script>
+    const decrement = document.getElementById("decrement");
+    const increment = document.getElementById("increment");
+    const quantityText = document.getElementById("quantity");
+    const totalPriceText = document.getElementById("totalPrice");
+    const basePrice = parseInt(document.getElementById("basePrice").textContent);
+
+    let quantity = 1;
+
+    function updateTotal() {
+        totalPriceText.textContent = basePrice * quantity;
+    }
+
+    increment.addEventListener("click", () => {
+        quantity++;
+        quantityText.textContent = quantity;
+        updateTotal();
+    });
+
+    decrement.addEventListener("click", () => {
+        if (quantity > 1) {
+            quantity--;
+            quantityText.textContent = quantity;
+            updateTotal();
+        }
+    });
+</script>
+
+</body>
+</html>
